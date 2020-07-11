@@ -168,6 +168,12 @@ namespace Blake2b.NetCore
             }
         }
 
+        public virtual void UpdateBlock(PinnedMemory<byte> message, int offset, int len)
+        {
+            UpdateBlock(message.ToArray(), offset, len);
+            message.Dispose();
+        }
+
         /**
          * update the message digest with a block of bytes.
          *
