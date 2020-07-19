@@ -1,7 +1,7 @@
 # Blake2b.NetCore
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![nuget](https://img.shields.io/nuget/v/Blake2b.NetCore.svg)](https://www.nuget.org/packages/Blake2b.NetCore/)
 
-Implementation of the cryptographic hash function BLAKE2b. Optimized for PinnedMemory, and 64-bit platforms and produces digests of any size between 1 and 64 bytes.
+Implementation of the cryptographic hash function [BLAKE2b](https://tools.ietf.org/html/draft-saarinen-blake2-02). Optimized for [PinnedMemory](https://github.com/TimothyMeadows/PinnedMemory), and 64-bit platforms and produces digests of any size between 1 and 64 bytes.
 
 # Install
 
