@@ -2,10 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Timothy D Meadows II</Authors>
+    <Company>Timothy D Meadows II</Company>
+    <Description>Implementation of the cryptographic hash function BLAKE2b. Optimized for PinnedMemory, and 64-bit platforms and produces digests of any size between 1 and 64 bytes.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/TimothyMeadows/Blake2b.NetCore</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="PinnedMemory" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
