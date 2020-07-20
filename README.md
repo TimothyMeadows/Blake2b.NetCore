@@ -22,8 +22,17 @@ https://www.nuget.org/packages/Blake2b.NetCore/
 
 You can find more examples in the github examples project.
 
+Hash:
 ```csharp
 var digest = new Blake2b();
+using var exampleHash = new PinnedMemory<byte>(new byte[digest.GetLength()]);
+digest.UpdateBlock(new PinnedMemory<byte>(new byte[] {63, 61, 77, 20, 63, 61, 77, 20, 63, 61, 77}, false), 0, 11);
+digest.DoFinal(exampleHash, 0);
+```
+
+Mac:
+```csharp
+var digest = new Blake2bMac(new PinnedMemory<byte>(new byte[] {63, 61, 77, 20, 63, 61, 77}, false));
 using var exampleHash = new PinnedMemory<byte>(new byte[digest.GetLength()]);
 digest.UpdateBlock(new PinnedMemory<byte>(new byte[] {63, 61, 77, 20, 63, 61, 77, 20, 63, 61, 77}, false), 0, 11);
 digest.DoFinal(exampleHash, 0);
@@ -35,6 +44,12 @@ Digest size restricted to 160, 256, 384, 512
 
 ```csharp
 Blake2b(int digestSize = 512)
+```
+```csharp
+Blake2bMac(PinnedMemory<byte> key)
+```
+```csharp
+Blake2bMac(PinnedMemory<byte> key, byte[] salt, int digestSize = 512)
 ```
 # Methods
 
