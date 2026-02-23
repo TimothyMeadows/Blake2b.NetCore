@@ -1,8 +1,6 @@
 # Blake2b.NetCore
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![nuget](https://img.shields.io/nuget/v/Blake2b.NetCore.svg)](https://www.nuget.org/packages/Blake2b.NetCore/)
 
-⛔️ [DEPRECATED] Please use [Blake2b.Net](https://github.com/TimothyMeadows/Blake2b.Net) as a replacement.
-
 Implementation of the cryptographic hash, and mac functions of [BLAKE2b](https://tools.ietf.org/html/draft-saarinen-blake2-02). Optimized for [PinnedMemory](https://github.com/TimothyMeadows/PinnedMemory), and 64-bit platforms.
 
 # Install
