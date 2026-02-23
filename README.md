@@ -10,6 +10,8 @@
 
 The implementation is optimized for 64-bit platforms and integrates with [`PinnedMemory`](https://github.com/TimothyMeadows/PinnedMemory) to support memory-sensitive use cases.
 
+Hash compression and digest serialization use SIMD-aware fast paths on supported runtimes, with an automatic scalar fallback to preserve correctness on non-SIMD hardware.
+
 > This implementation does **not** support BLAKE2 tree hashing mode.
 
 ---
@@ -24,6 +26,7 @@ The implementation is optimized for 64-bit platforms and integrates with [`Pinne
 - [API reference](#api-reference)
   - [`Blake2b`](#blake2b)
   - [`Blake2bMac`](#blake2bmac)
+- [Performance notes](#performance-notes)
 - [Best practices](#best-practices)
 - [Validation and known test vectors](#validation-and-known-test-vectors)
 - [Development](#development)
@@ -179,6 +182,14 @@ void Dispose()
 
 ---
 
+## Performance notes
+
+- On runtimes where `Vector128` hardware acceleration is available, the library uses SIMD-assisted code paths for block word loading and chain-value folding in both `Blake2b` and `Blake2bMac`.
+- On runtimes without SIMD support, the implementation automatically falls back to scalar processing with identical outputs.
+- For validation and troubleshooting, SIMD can be disabled at runtime via the `AppContext` switch `Blake2b.NetCore.DisableSimd` (used by the test suite to assert SIMD/scalar parity).
+
+---
+
 ## Best practices
 
 ### 1) Prefer keyed mode (`Blake2bMac`) for authenticity
@@ -216,10 +227,11 @@ void Dispose()
 
 ## Validation and known test vectors
 
-The test project validates implementation behavior against published vectors, including:
+The test project validates implementation behavior against published vectors and verifies SIMD/scalar parity, including:
 
 - BLAKE2b-512 of empty string
 - BLAKE2b-512 of `"abc"`
+- Equivalence checks between SIMD-enabled and SIMD-disabled execution paths for `Blake2b` and `Blake2bMac`
 
 Example expected values:
 
