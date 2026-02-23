@@ -135,7 +135,7 @@ namespace Blake2b.NetCore
          * @param salt            16 bytes or null
          * @param personalization 16 bytes or null
          */
-        public Blake2bMac(PinnedMemory<byte> key, byte[] salt, int digestLength = 512)
+        public Blake2bMac(PinnedMemory<byte> key, byte[] salt, int digestLength = 64)
         {
             if (digestLength < 1 || digestLength > 64)
                 throw new ArgumentException("Invalid digest length (required: 1 - 64)");
@@ -160,6 +160,7 @@ namespace Blake2b.NetCore
 
                 _key = key;
                 _keyLength = key.Length;
+                Array.Copy(_key.ToArray(), 0, _buffer, 0, _keyLength);
                 _bufferPos = BlockLengthBytes; // zero padding
             }
 
@@ -242,7 +243,6 @@ namespace Blake2b.NetCore
         public virtual void UpdateBlock(PinnedMemory<byte> message, int offset, int len)
         {
             UpdateBlock(message.ToArray(), offset, len);
-            message.Dispose();
         }
 
         /**

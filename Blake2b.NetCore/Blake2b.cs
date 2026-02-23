@@ -93,8 +93,8 @@ namespace Blake2b.NetCore
          */
         public Blake2b(int digestSize = 512)
         {
-            if (digestSize != 160 && digestSize != 256 && digestSize != 384 && digestSize != 512)
-                throw new ArgumentException("Blake2b digest restricted to one of [160, 256, 384, 512]");
+            if (digestSize < 8 || digestSize > 512 || (digestSize % 8) != 0)
+                throw new ArgumentException("Blake2b digest length must be a multiple of 8 in range 8-512 bits");
 
             _buffer = new byte[BlockLengthBytes];
             _bufferPin = new PinnedMemory<byte>(_buffer);
@@ -171,7 +171,6 @@ namespace Blake2b.NetCore
         public virtual void UpdateBlock(PinnedMemory<byte> message, int offset, int len)
         {
             UpdateBlock(message.ToArray(), offset, len);
-            message.Dispose();
         }
 
         /**
