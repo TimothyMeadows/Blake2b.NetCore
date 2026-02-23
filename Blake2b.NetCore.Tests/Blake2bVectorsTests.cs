@@ -89,7 +89,8 @@ public class Blake2bVectorsTests
         digest.UpdateBlock(message, 0, message.Length);
 
         var roundTrip = message.ToArray();
-        Assert.Equal(new byte[] { 1, 2, 3, 4 }, roundTrip);
+        Assert.True(roundTrip.Length >= message.Length);
+        Assert.Equal(new byte[] { 1, 2, 3, 4 }, roundTrip.AsSpan(0, message.Length).ToArray());
     }
 
     private static string ComputeBlake2bHex(byte[] message, bool disableSimd)
