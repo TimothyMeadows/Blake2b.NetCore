@@ -62,7 +62,7 @@ namespace Blake2b.NetCore
         // General parameters:
         private readonly int _digestLength; // 1- 64 bytes
         private readonly int _keyLength = 0; // 0 - 64 bytes for keyed hashing for MAC
-        private readonly byte[] _salt = null;// new byte[16];
+        private readonly byte[] _salt; // new byte[16];
 
         // the key
         private readonly PinnedMemory<byte> _key;
@@ -79,14 +79,14 @@ namespace Blake2b.NetCore
         // whenever this buffer overflows, it will be processed
         // in the Compress() function.
         // For performance issues, long messages will not use this buffer.
-        private readonly byte[] _buffer = null;// new byte[BLOCK_LENGTH_BYTES];
+        private readonly byte[] _buffer; // new byte[BLOCK_LENGTH_BYTES];
         private readonly PinnedMemory<byte> _bufferPin;
         // Position of last inserted byte:
         private int _bufferPos = 0;// a value from 0 up to 128
 
         private readonly ulong[] _internalState = new ulong[16]; // In the Blake2b paper it is
         // called: v
-        private ulong[] _chainValue = null; // state vector, in the Blake2b paper it
+        private ulong[] _chainValue; // state vector, in the Blake2b paper it
         // is called: h
 
         private ulong t0 = 0UL; // holds last significant bits, counter (counts bytes)

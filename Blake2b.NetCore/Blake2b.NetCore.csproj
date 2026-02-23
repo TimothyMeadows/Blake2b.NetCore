@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Timothy D Meadows II</Authors>
     <Company>Timothy D Meadows II</Company>
@@ -10,6 +10,8 @@
     <RepositoryUrl>https://github.com/TimothyMeadows/Blake2b.NetCore</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <Version>1.0.1</Version>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

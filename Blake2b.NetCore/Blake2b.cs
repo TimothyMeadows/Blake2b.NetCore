@@ -68,7 +68,7 @@ namespace Blake2b.NetCore
         // whenever this buffer overflows, it will be processed
         // in the Compress() function.
         // For performance issues, long messages will not use this buffer.
-        private readonly byte[] _buffer = null;// new byte[BLOCK_LENGTH_BYTES];
+        private readonly byte[] _buffer; // new byte[BLOCK_LENGTH_BYTES];
 
         private readonly PinnedMemory<byte> _bufferPin;
         // Position of last inserted byte:
@@ -76,7 +76,7 @@ namespace Blake2b.NetCore
 
         private readonly ulong[] _internalState = new ulong[16]; // In the Blake2b paper it is
         // called: v
-        private ulong[] _chainValue = null; // state vector, in the Blake2b paper it
+        private ulong[] _chainValue; // state vector, in the Blake2b paper it
         // is called: h
 
         private ulong t0 = 0UL; // holds last significant bits, counter (counts bytes)
