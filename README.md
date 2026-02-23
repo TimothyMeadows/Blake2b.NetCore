@@ -45,7 +45,7 @@ digest.DoFinal(exampleHash, 0);
 
 # Constructor
 
-Digest size restricted to 160, 256, 384, 512
+Digest size supports any multiple of 8 bits from 8 to 512 (RFC 7693 output sizes 1..64 bytes)
 
 ```csharp
 Blake2b(int digestSize = 512)
@@ -54,7 +54,7 @@ Blake2b(int digestSize = 512)
 Blake2bMac(PinnedMemory<byte> key)
 ```
 ```csharp
-Blake2bMac(PinnedMemory<byte> key, byte[] salt, int digestSize = 512)
+Blake2bMac(PinnedMemory<byte> key, byte[] salt, int digestSize = 64)
 ```
 # Methods
 
