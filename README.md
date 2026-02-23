@@ -18,6 +18,11 @@ You can also search for package via your nuget ui / website:
 
 https://www.nuget.org/packages/Blake2b.NetCore/
 
+
+## Target framework
+
+This repository now targets **.NET 8** by default (see `global.json` and project files).
+
 # Examples
 
 You can find more examples in the github examples project.
